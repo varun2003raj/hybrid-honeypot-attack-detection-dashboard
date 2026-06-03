@@ -1,0 +1,88 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kali Terminal</title>
+    <style>
+        body {
+            background: black;
+            color: #00ff88;
+            font-family: monospace;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #terminal {
+            white-space: pre-wrap;
+        }
+
+        .input-line {
+            display: flex;
+        }
+
+        .prompt {
+            margin-right: 5px;
+        }
+
+        input {
+            background: black;
+            border: none;
+            color: #00ff88;
+            outline: none;
+            width: 100%;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<pre id="terminal"></pre>
+
+<div class="input-line">
+    <span class="prompt">root@kali:~#</span>
+    <input type="text" id="cmd" autofocus autocomplete="off">
+</div>
+
+<script>
+let terminal = document.getElementById("terminal");
+let input = document.getElementById("cmd");
+
+input.addEventListener("keydown", function(e) {
+    if (e.ctrlKey && e.key === "c") {
+        window.location.href = "/logout";
+    }
+    if (e.key === "Enter") {
+        let command = input.value;
+
+        terminal.innerHTML += "root@kali:~# " + command + "\n";
+
+        fetch("/terminal_api", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({cmd: command})
+        })
+        .then(res => res.json())
+    .then(data => {
+
+        if (data.clear) {
+            terminal.innerHTML = "";
+        } else {
+            terminal.innerHTML += data.output + "\n";
+        }
+
+        // EXIT -> logout
+        if (data.output === "logout") {
+            window.location.href = "/logout";
+        }
+
+        terminal.scrollTop = terminal.scrollHeight;
+    });
+        input.value = "";
+    }
+});
+</script>
+
+</body>
+</html>
