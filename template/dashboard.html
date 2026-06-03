@@ -1,0 +1,190 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SOC Dashboard</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background:#0b1220;
+    color:#e6f1ff;
+}
+
+/* HEADER */
+.header {
+    height:60px;
+    background:#020617;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 25px;
+    border-bottom:1px solid #1f3b5a;
+}
+
+/* BUTTON */
+.cmd-btn {
+    text-decoration: none;
+    background: #020617;
+    border: 1px solid #1f3b5a;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: #00ff88;
+    font-family: monospace;
+    margin-right:10px;
+    transition:0.3s;
+}
+
+.cmd-btn:hover {
+    background: #00ff88;
+    color: black;
+}
+
+/* MAIN */
+.main {
+    height: calc(100vh - 60px);
+    padding:20px;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* STATS */
+.stats {
+    display:flex;
+    gap:20px;
+}
+
+.stat-box {
+    flex:1;
+    background:#020617;
+    padding:20px;
+    border-radius:10px;
+    border:1px solid #1f3b5a;
+    text-align:center;
+}
+
+.stat-box h2 {
+    margin:0;
+    color:#00ff88;
+}
+
+/* LOGS */
+.logs {
+    flex:1;
+    background:rgba(10,20,35,0.8);
+    border:1px solid #1f3b5a;
+    border-radius:10px;
+    padding:15px;
+    overflow:auto;
+}
+
+/* TABLE */
+table {
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td {
+    padding:10px;
+    border-bottom:1px solid #1f3b5a;
+    font-size:13px;
+}
+
+th {
+    color:#00ff88;
+}
+</style>
+</head>
+
+<body>
+
+{% if show_popup %}
+<script>
+alert("XSS Detected (Honeypot Alert)");
+</script>
+{% endif %}
+
+<!-- HEADER -->
+<div class="header">
+
+    <h3>🛡 SOC MONITORING DASHBOARD</h3>
+
+    <div>
+
+        <!-- 💻 TERMINAL BUTTON -->
+        <a href="/terminal" target="_blank" class="cmd-btn">
+            💻 Terminal
+        </a>
+
+        <!-- 📤 UPLOAD BUTTON -->
+        <a href="/upload" target="_blank" class="cmd-btn">
+            📤 Upload
+        </a>
+
+        <!-- LOGOUT -->
+        <a href="/logout" style="color:#00bfff;">
+            Logout
+        </a>
+
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- STATS -->
+    <div class="stats">
+
+        <div class="stat-box">
+            <h2>875</h2>
+            <p>Total Requests</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>32</h2>
+            <p>Threats Detected</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>12</h2>
+            <p>Blocked IPs</p>
+        </div>
+
+    </div>
+
+    <!-- LOGS -->
+    <div class="logs">
+
+        <h3>📜 Recent Activity Logs</h3>
+
+        <table>
+
+            <tr>
+                <th>Time</th>
+                <th>IP</th>
+                <th>Username</th>
+                <th>Risk</th>
+                <th>Type</th>
+            </tr>
+
+            <tr>
+                <td>12:30</td>
+                <td>192.168.1.5</td>
+                <td>admin</td>
+                <td>80</td>
+                <td>Brute Force</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+                                     
