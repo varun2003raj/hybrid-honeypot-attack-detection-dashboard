@@ -1,0 +1,157 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Honeypot Admin Dashboard</title>
+
+<style>
+
+body {
+    background: black;
+    color: #00ff88;
+    font-family: monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    color: #00ff88;
+}
+
+.log-box {
+    margin-top: 20px;
+}
+
+.log-row {
+    display: grid;
+    grid-template-columns: 170px 120px 100px 100px 60px 200px 250px 120px;
+    padding: 8px;
+    border-left: 3px solid #00ff88;
+    margin-bottom: 5px;
+    background: #020617;
+}
+
+.log-header {
+    font-weight: bold;
+    border-bottom: 1px solid #00ff88;
+    margin-bottom: 10px;
+}
+
+.green {
+    color: #00ff88;
+}
+
+.yellow {
+    color: #ffcc00;
+}
+
+.red {
+    color: #ff3b3b;
+}
+
+.blue {
+    color: #00bfff;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>⚠ Honeypot Admin Dashboard</h2>
+
+<a href="/hybrid_dashboard" style="color:#00bfff; font-weight:bold;">
+🔥 View Hybrid Dashboard
+</a>
+
+<br><br>
+
+<div class="log-box">
+
+    <!-- HEADER -->
+    <div class="log-row log-header">
+        <div>Time</div>
+        <div>IP</div>
+        <div>User</div>
+        <div>Pass</div>
+        <div>Risk</div>
+        <div>Status</div>
+        <div>Reason</div>
+        <div>Attack</div>
+    </div>
+
+    {% for row in logs %}
+
+    <!-- LOG ROW -->
+    <div class="log-row"
+        style="border-left: 3px solid
+
+        {% if 'BRUTE' in row[5] or 'BLOCK' in row[5] or 'SQL' in row[5] or 'LFI' in row[5] or 'COMMAND' in row[5] or 'TRAP' in row[5] or 'FILE' in row[5] %}
+            #ff3b3b
+
+        {% elif 'SUSPICIOUS' in row[5] %}
+            #ffcc00
+
+        {% elif 'REAL LOGIN' in row[5] or 'NORMAL' in row[5] %}
+            #00ff88
+
+        {% elif 'HONEYPOT' in row[5] %}
+            #00bfff
+
+        {% else %}
+            #00ff88
+
+        {% endif %}
+    ;">
+
+        <div>{{ row[0] }}</div>
+        <div>{{ row[1] }}</div>
+
+        <!-- USERNAME -->
+        <div>{{ row[2] | e }}</div>
+
+        <!-- PASSWORD -->
+        <div>{{ row[3] | e }}</div>
+
+        <!-- RISK -->
+        <div>{{ row[4] }}</div>
+
+        <!-- STATUS -->
+        <div class="
+
+            {% if 'REAL LOGIN' in row[5] or 'NORMAL' in row[5] %}
+                green
+
+            {% elif 'SUSPICIOUS' in row[5] %}
+                yellow
+
+            {% elif 'BRUTE' in row[5] or 'BLOCK' in row[5] or 'SQL' in row[5] or 'LFI' in row[5] or 'COMMAND' in row[5] or 'TRAP' in row[5] or 'FILE' in row[5] %}
+                red
+
+            {% elif 'HONEYPOT' in row[5] %}
+                blue
+
+            {% else %}
+                yellow
+
+            {% endif %}
+
+        ">
+            {{ row[5] }}
+        </div>
+
+        <!-- REASON -->
+        <div>{{ row[6] | safe }}</div>
+
+        <!-- ATTACK -->
+        <div>{{ row[7] | safe }}</div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
