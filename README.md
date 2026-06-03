@@ -85,7 +85,7 @@ template/
 ## 📸 Screenshots
 
 ###login pagr
-![login](screenshots/login.png)
+![login](screenshots/login.jpeg)
 
 ---
 
