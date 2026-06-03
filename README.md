@@ -102,9 +102,9 @@ template/
 ![upload](screenshots/upload/upload_success.png)
 
 ### Hybrid Dashboard
-![Hybrid](screenshots/hybrid_dashboard/ssh_logs.png)
+![Hybrid](screenshots/hybird_dashboard/ssh_logs.png)
 
-![Hybrid](screenshots/hybrid_dashboard/web_logs.png)
+![Hybrid](screenshots/hybird_dashboard/web_logs.png)
 
 ### summary
 ![summary](screenshots/summary.png)
