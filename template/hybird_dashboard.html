@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hybrid Honeypot Dashboard</title>
+
+    <style>
+
+        body {
+            background: #020617;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #38bdf8;
+        }
+
+        h2 {
+            color: #facc15;
+            margin-top: 40px;
+        }
+
+        .box {
+            background: #1e293b;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .red {
+            border-left: 5px solid red;
+        }
+
+        .yellow {
+            border-left: 5px solid orange;
+        }
+
+        .green {
+            border-left: 5px solid #22c55e;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            background: #38bdf8;
+            color: black;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>🔥 Hybrid Honeypot Dashboard</h1>
+
+    <a href="/admin" class="btn">⬅ Back Admin</a>
+
+    <hr>
+
+    <!-- WEB LOGS -->
+
+    <h2>🌐 Web Honeypot Logs</h2>
+
+    {% if web_logs %}
+
+        {% for row in web_logs %}
+
+            <div class="box
+                {% if row[3] >= 70 %}
+                    red
+                {% elif row[3] >= 40 %}
+                    yellow
+                {% else %}
+                    green
+                {% endif %}
+            ">
+
+                <b>Time:</b> {{ row[0] }} <br><br>
+
+                <b>IP:</b> {{ row[1] }} <br><br>
+
+                <b>User:</b> {{ row[2] }} <br><br>
+
+                <b>Risk:</b> {{ row[3] }} <br><br>
+
+                <b>Status:</b> {{ row[4] }} <br><br>
+
+                <b>Reason:</b> {{ row[5] }} <br><br>
+
+                <b>Attack:</b> {{ row[6] }}
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="box">No Web Logs Found</div>
+
+    {% endif %}
+
+    <hr>
+
+    <!-- SSH LOGS -->
+
+    <h2>🐚 SSH Honeypot Logs</h2>
+
+    {% if ssh_logs %}
+
+        {% for log in ssh_logs %}
+
+            <div class="box">
+
+                <pre>{{ log }}</pre>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="box">No SSH Logs Found</div>
+
+    {% endif %}
+
+</body>
+</html>
