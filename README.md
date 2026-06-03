@@ -87,6 +87,28 @@ template/
 ### Login page
 ![login](screenshots/login.jpeg)
 
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Alerts
+![Alerts](screenshots/alerts.png)
+
+### Terminal
+![Terminal](screenshots/terminal.png)
+
+### Upload
+![upload](screenshots/upload/login_page.png)
+
+![upload](screenshots/upload/upload_success.png)
+
+### Hybrid Dashboard
+![Hybrid](screenshots/hybrid_dashboard/ssh_logs.png)
+
+![Hybrid](screenshots/hybrid_dashboard/web_logs.png)
+
+### summary
+![summary](screenshots/summary.png)
+
 ---
 
 ## 📈 Future Improvements
