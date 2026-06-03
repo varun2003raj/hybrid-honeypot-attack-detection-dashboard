@@ -1,0 +1,97 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SSH Honeypot Logs</title>
+
+    <style>
+        body {
+            background: #0f172a;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #38bdf8;
+        }
+
+        h3 {
+            color: #facc15;
+        }
+
+        .log-box {
+            background: #1e293b;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 5px solid #38bdf8;
+        }
+
+        .alert-box {
+            background: #450a0a;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid red;
+            border-radius: 8px;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            background: #38bdf8;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>🐚 SSH Honeypot Logs</h2>
+
+<a class="btn" href="/admin">⬅ Back to Admin</a>
+
+<hr>
+
+<!-- SSH LOGS -->
+
+{% for item in ssh_data %}
+
+<div class="log-box">
+
+    <pre>{{ item["log"] }}</pre>
+
+    <b>Risk:</b> {{ item["risk"] }}
+
+</div>
+
+{% endfor %}
+
+<hr>
+
+<h3>🚨 SSH Alerts</h3>
+
+{% for a in alerts %}
+
+<div class="alert-box">
+
+    ⏰ {{ a["time"] }} <br><br>
+
+    🚨 {{ a["type"] }} <br><br>
+
+    ⚠ Risk: {{ a["risk"] }} <br><br>
+
+    🧠 {{ a["reason"] }}
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>
