@@ -1,0 +1,23 @@
+<html>
+<body style="background:black; color:white; font-family:Arial; display:flex; justify-content:center; align-items:center; height:100vh;">
+
+<form method="POST" style="background:#111; padding:40px; border-radius:10px; width:300px; text-align:center;">
+
+<h2>Admin Access</h2>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<input type="password" name="password" placeholder="Enter Password"
+style="padding:10px; width:100%; margin-bottom:15px;">
+
+<button type="submit"
+style="padding:10px; width:100%; background:blue; color:white; border:none;">
+Login
+</button>
+
+</form>
+
+</body>
+</html>
