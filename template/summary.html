@@ -1,0 +1,28 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attack Summary</title>
+</head>
+<body style="background:black; color:#00ff88; font-family:monospace;">
+
+<h2>Daily Attack Summary</h2>
+
+<table border="1" cellpadding="10">
+<tr>
+    <th>Status</th>
+    <th>Count</th>
+</tr>
+
+{% for row in stats %}
+<tr>
+    <td>{{ row[0] }}</td>
+    <td>{{ row[1] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>
+                                
