@@ -1,0 +1,46 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alerts</title>
+    <style>
+        body {
+            background: #0f172a;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .box {
+            background: #1e293b;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #facc15;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>🚨 Live Security Alerts</h2>
+
+<a href="/admin" style="color:cyan;">⬅ Back</a>
+
+<hr>
+
+{% for a in alerts %}
+<div class="box">
+    <b>Time:</b> {{ a.time }} <br>
+    <b>IP:</b> {{ a.ip }} <br>
+    <b>Attack Type:</b> {{ a.attack_type }} <br>
+    <b>Risk:</b> {{ a.risk }} <br>
+    <b>Reason:</b> {{ a.reason }}
+</div>
+{% endfor %}
+
+</body>
+</html>
